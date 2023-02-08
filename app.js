@@ -1,28 +1,30 @@
-import createError from 'http-errors';
-import express, { json, urlencoded } from 'express';
-import { join } from 'path';
-import cookieParser from 'cookie-parser';
-import logger from 'morgan';
-import { middleware } from 'stylus';
-
-import indexRouter from './routes/index';
-import usersRouter from './routes/users';
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const stylus = require('stylus');
+require('dotenv').config()
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const tmdbRouter = require('./routes/tmdb');
 
 const app = express();
 
 // view engine setup
-app.set('views', join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
-app.use(json());
-app.use(urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(middleware(join(__dirname, 'public')));
-app.use(express.static(join(__dirname, 'public')));
+app.use(stylus.middleware(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/tmdb', tmdbRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -40,4 +42,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-export default app;
+module.exports = app;
