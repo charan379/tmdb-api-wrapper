@@ -130,3 +130,4 @@ Server will start running on given port
 ```bash
     http://localhost:PORT/api-docs
 ````
+![Swagger-docs-preview](documentation/swagger.jpg)
