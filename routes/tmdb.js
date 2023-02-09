@@ -113,6 +113,27 @@ router.get("/search", function (req, res, next) {
   }
 });
 
+
+
+/**
+ * @swagger
+ * /tmdb/movie/{tmdb_id}:
+ *  get:
+ *    summary: API to fetch movie details from tmdb
+ *    description: Retirve movie details from tmdb
+ *    parameters:
+ *    - in: path
+ *      name: tmdb_id
+ *      schema:
+ *        type: Number
+ *      description: tmdb movie id
+ *      default : 550
+ *    responses:
+ *      200:
+ *        description: Success
+ *      404:
+ *       description: No Data Avaialble
+ */
 /* GET tmdb movie details */
 router.get("/movie/:tmdb_id", function (req, res, next) {
   try {
@@ -136,6 +157,26 @@ router.get("/movie/:tmdb_id", function (req, res, next) {
   }
 });
 
+
+/**
+ * @swagger
+ * /tmdb/tv/{tmdb_id}:
+ *  get:
+ *    summary: API to fetch tv show details from tmdb
+ *    description: Retirve tv show details from tmdb
+ *    parameters:
+ *    - in: path
+ *      name: tmdb_id
+ *      schema:
+ *        type: Number
+ *      description: tmdb tv show id
+ *      default : 1399
+ *    responses:
+ *      200:
+ *        description: Success
+ *      404:
+ *       description: No Data Avaialble
+ */
 /* GET tmdb tv details */
 router.get("/tv/:tmdb_id", function (req, res, next) {
   try {
@@ -159,6 +200,31 @@ router.get("/tv/:tmdb_id", function (req, res, next) {
   }
 });
 
+/**
+ * @swagger
+ * /tmdb/tv/{tmdb_tv_id}/season/{season_number}:
+ *  get:
+ *    summary: API to fetch tv show season details from tmdb
+ *    description: Retirve tv show season details from tmdb
+ *    parameters:
+ *    - in: path
+ *      name: tmdb_tv_id
+ *      schema:
+ *        type: Number
+ *      description: tmdb tv show id
+ *      default : 1399
+ *    - in: path
+ *      name: season_number
+ *      schema:
+ *        type: Number
+ *      description: tv show season number
+ *      default : 1
+ *    responses:
+ *      200:
+ *        description: Success
+ *      404:
+ *       description: No Data Avaialble
+ */
 /* GET tmdb tv-season details */
 router.get("/tv/:tmdb_tv_id/season/:season_number", function (req, res, next) {
   try {
