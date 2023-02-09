@@ -61,7 +61,7 @@ Server will start running on given port
 ### GET Search
 #### Retirve a list of movies or tv shows from tmdb
 
-```http
+```bash
   GET /tmdb/search
 ```
 
@@ -73,13 +73,13 @@ Server will start running on given port
 | `pageNo` | `string` | page number |
 
 #### Example
-```http
+```bash
   GET /tmdb/search?query=fight%20club&type=movie&year=1999&pageNo=1
 ```
 ### GET movie etails
 #### Retirve movie details from tmdb
 
-```http
+```bash
   GET /tmdb/movie/{tmdb_id}
 ```
 
@@ -88,14 +88,14 @@ Server will start running on given port
 | `tmdb_id`      | `number` | **Required**. Id of movie to fetch |
 
 #### Example
-```http
+```bash
   GET /tmdb/movie/550
 ```
 
 ### GET tv etails
 #### Retirve tv details from tmdb
 
-```http
+```bash
   GET /tmdb/tv/{tmdb_id}
 ```
 
@@ -104,14 +104,14 @@ Server will start running on given port
 | `tmdb_id`      | `number` | **Required**. Id of tv to fetch |
 
 #### Example
-```http
+```bash
   GET /tmdb/tv/1399
 ```
 
 ### GET tv show season details from tmdb
 #### Retirve tv show season details from tmdb
 
-```http
+```bash
   GET /tmdb/tv/{tmdb_tv_id}/season/{season_number}
 ```
 
@@ -121,14 +121,12 @@ Server will start running on given port
 | `season_number`      | `number` | **Required**. season number of tv to fetch |
 
 #### Example
-```http
+```bash
   GET /tmdb/tv/1399
 ```
 
-
-
 ### Post-Installation
 #### Swagger Documentation
-```http
+```bash
     http://localhost:PORT/api-docs
 ````
