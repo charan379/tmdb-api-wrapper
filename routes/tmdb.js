@@ -35,6 +35,8 @@ router.get("/", function (req, res, next) {
  * @swagger
  * /tmdb/config:
  *  get:
+ *    tags: 
+ *      - tmdb
  *    summary: API to fetch configuration of tmdb
  *    description: Retirve a list of configuration variables
  *    responses:
@@ -54,6 +56,8 @@ router.get("/config", function (req, res, next) {
  * @swagger
  * /tmdb/search:
  *  get:
+ *    tags: 
+ *      - tmdb
  *    summary: API to fetch movies or tv shows from tmdb
  *    description: Retirve a list of movies or tv shows from tmdb
  *    parameters:
@@ -119,6 +123,8 @@ router.get("/search", function (req, res, next) {
  * @swagger
  * /tmdb/movie/{tmdb_id}:
  *  get:
+ *    tags: 
+ *      - tmdb 
  *    summary: API to fetch movie details from tmdb
  *    description: Retirve movie details from tmdb
  *    parameters:
@@ -162,6 +168,8 @@ router.get("/movie/:tmdb_id", function (req, res, next) {
  * @swagger
  * /tmdb/tv/{tmdb_id}:
  *  get:
+ *    tags: 
+ *      - tmdb 
  *    summary: API to fetch tv show details from tmdb
  *    description: Retirve tv show details from tmdb
  *    parameters:
@@ -204,6 +212,8 @@ router.get("/tv/:tmdb_id", function (req, res, next) {
  * @swagger
  * /tmdb/tv/{tmdb_tv_id}/season/{season_number}:
  *  get:
+ *    tags: 
+ *      - tmdb
  *    summary: API to fetch tv show season details from tmdb
  *    description: Retirve tv show season details from tmdb
  *    parameters:
