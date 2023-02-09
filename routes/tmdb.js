@@ -32,7 +32,6 @@ router.get("/search", function (req, res, next) {
         });
       });
   } catch (error) {
-    console.log(error);
     res.status(500).json({
       code: 500,
       errorMessage: "Internal Server Error 500",
@@ -56,7 +55,6 @@ router.get("/movie/:tmdb_id", function (req, res, next) {
           });
         });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         code: 500,
         errorMessage: "Internal Server Error 500",
@@ -80,7 +78,6 @@ router.get("/tv/:tmdb_id", function (req, res, next) {
           });
         });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         code: 500,
         errorMessage: "Internal Server Error 500",
@@ -91,7 +88,6 @@ router.get("/tv/:tmdb_id", function (req, res, next) {
 
 /* GET tmdb tv-season details */
 router.get("/tv/:tmdb_tv_id/season/:season_number", function (req, res, next) {
-    console.log(req.params)
     try {
         getTmdbTvSeason({...req.params})
         .then((response) => {
@@ -105,7 +101,6 @@ router.get("/tv/:tmdb_tv_id/season/:season_number", function (req, res, next) {
           });
         });
     } catch (error) {
-      console.log(error);
       res.status(500).json({
         code: 500,
         errorMessage: "Internal Server Error 500",
