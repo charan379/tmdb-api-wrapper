@@ -3,9 +3,9 @@
  *
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
- *  	@createedOn : 2023-01-27 12:42:28
- *      @lastModifiedOn : 2023-02-08 15:47:28
- *  	@desc   : [description]
+ *  	  @createedOn : 2023-01-27 12:42:28
+ *      @lastModifiedOn : 2023-02-09 15:35:39
+ *  	  @desc   : [description]
  *
  *  #########################################################
  */
@@ -101,7 +101,7 @@ const axios = require('axios');
                  ${search.pageNo ? "&page=" + search.pageNo : ""}`
      .replace(/\n/g, "")
      .replace(/ /g, "");
-  console.log(url)
+  // console.log(url)
    // return moviedata promise
    return new Promise((resolve, reject) => {
      axios
