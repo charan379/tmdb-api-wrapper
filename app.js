@@ -32,6 +32,10 @@ const swaggerOptions = {
         name: "charan379",
         url: "#",
       },
+      license: {
+        name: "GNU Affero General Public License",
+        url: "https://www.gnu.org/licenses/agpl-3.0.en.html",
+      },
       servers: ["http://localhost:3000"],
     },
   },
