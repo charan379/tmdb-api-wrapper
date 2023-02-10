@@ -20,5 +20,18 @@
   },
   "devDependencies": {
     "eslint": "^8.33.0"
-  }
+  },
+  "description": "This is REST API application consumes tmdb api and adds a wrapper. Basically Developed as part of MovieBunkers Application",
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "https://tobeadded"
+  },
+  "keywords": [
+    "moviebunkers",
+    "tmdb",
+    "tmdb-api"
+  ],
+  "author": "charan379",
+  "license": "AGPL-3.0-or-later"
 }
