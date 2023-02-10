@@ -8,21 +8,21 @@ This is REST API application consumes tmdb api and adds a wrapper. Basically Dev
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`APP_TMDB_API`
-`APP_TMDB_API_URL`
-`APP_TMDB_API_IMAGES_URL`
-`APP_TMDB_API_LANGUAGE`
-`APP_TMDB_API_REGION`
-`PORT`
+`APP_TMDB_API`  
+`APP_TMDB_API_URL`  
+`APP_TMDB_API_IMAGES_URL`  
+`APP_TMDB_API_LANGUAGE`  
+`APP_TMDB_API_REGION`  
+`PORT`  
 
 
 ####  Example 
-`APP_TMDB_API`=1010cbcbe48**********************
-`APP_TMDB_API_URL`=https://api.themoviedb.org/3/
-`APP_TMDB_API_IMAGES_URL`=https://image.tmdb.org/t/p/
-`APP_TMDB_API_LANGUAGE`=en-US
-`APP_TMDB_API_REGION`=IN
-`PORT`=3000
+`APP_TMDB_API`=1010cbcbe48**********************  
+`APP_TMDB_API_URL`=https://api.themoviedb.org/3/  
+`APP_TMDB_API_IMAGES_URL`=https://image.tmdb.org/t/p/  
+`APP_TMDB_API_LANGUAGE`=en-US  
+`APP_TMDB_API_REGION`=IN  
+`PORT`=3000 
 ## Authors
 
 - [@charan379](https://www.github.com/charan379)
