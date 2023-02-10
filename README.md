@@ -1,5 +1,4 @@
-
-# tmdb-api-wrapper
+# tmdb-api-wrapper [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-brightgreen)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 This is REST API application consumes tmdb api and adds a wrapper. Basically Developed as part of MovieBunkers Application
 
@@ -134,4 +133,4 @@ Server will start running on given port
 
 ## License
 
-[GNU AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html)
+[GNU AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-brightgreen)](https://www.gnu.org/licenses/agpl-3.0.en.html)
