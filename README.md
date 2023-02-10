@@ -23,10 +23,6 @@ To run this project, you will need to add the following environment variables to
 `APP_TMDB_API_LANGUAGE`=en-US  
 `APP_TMDB_API_REGION`=IN  
 `PORT`=3000 
-## Authors
-
-- [@charan379](https://www.github.com/charan379)
-
 
 ## Run
 
@@ -131,3 +127,7 @@ Server will start running on given port
     http://localhost:PORT/api-docs
 ````
 ![Swagger-docs-preview](documentation/swagger.jpg)
+
+## Authors
+
+- [@charan379](https://www.github.com/charan379)
