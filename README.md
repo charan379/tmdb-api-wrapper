@@ -71,7 +71,7 @@ Server will start running on given port
 ```bash
   GET /tmdb/search?query=fight%20club&type=movie&year=1999&pageNo=1
 ```
-### GET movie etails
+### GET movie details
 #### Retirve movie details from tmdb
 
 ```bash
@@ -87,7 +87,7 @@ Server will start running on given port
   GET /tmdb/movie/550
 ```
 
-### GET tv etails
+### GET tv details
 #### Retirve tv details from tmdb
 
 ```bash
