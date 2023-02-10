@@ -131,3 +131,7 @@ Server will start running on given port
 ## Authors
 
 - [@charan379](https://www.github.com/charan379)
+
+## License
+
+[GNU AGPLv3](https://www.gnu.org/licenses/agpl-3.0.en.html)
