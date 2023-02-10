@@ -118,7 +118,7 @@ Server will start running on given port
 
 #### Example
 ```bash
-  GET /tmdb/tv/1399
+  GET tmdb/tv/1399/season/1
 ```
 
 ### Post-Installation
