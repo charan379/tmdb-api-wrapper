@@ -30,7 +30,7 @@ const swaggerOptions = {
       version: "1.0.0",
       contact: {
         name: "charan379",
-        url: "/",
+        url: "#",
       },
       servers: ["http://localhost:3000"],
     },
