@@ -59,9 +59,9 @@ Server will start running on given port
 | Name | API END Point     | Example | Status   |
 | :----------------- | :-------------------------- | :-------------------------| :------- |
 | `search` | `GET` [`/tmdb/search`](#get-search) | ```/tmdb/search?query=fight%20club&type=movie&year=1999&pageNo=1``` | **:green_circle:** |
-| `movie-details` | `GET` [`/tmdb/movie/{tmdb_id}`](#get-movie-details) | ```/tmdb/movie/550``` | **:green_circle:** |
-| `tv-details` | `GET` [`/tmdb/tv/{tmdb_id}`](#get-tv-details) | ```/tmdb/tv/1399``` | **:green_circle:** |
-| `tv-season-details` | `GET` [`/tmdb/tv/{tmdb_tv_id}/season/{season_number}`](#get-tv-show-season-details-from-tmdb) | ```tmdb/tv/1399/season/1``` | **:green_circle:** |
+| `movie--details` | `GET` [`/tmdb/movie/{tmdb_id}`](#get-movie-details) | ```/tmdb/movie/550``` | **:green_circle:** |
+| `tv--details` | `GET` [`/tmdb/tv/{tmdb_id}`](#get-tv-details) | ```/tmdb/tv/1399``` | **:green_circle:** |
+| `tv--season--details` | `GET` [`/tmdb/tv/{tmdb_tv_id}/season/{season_number}`](#get-tv-show-season-details-from-tmdb) | ```tmdb/tv/1399/season/1``` | **:green_circle:** |
 
 ## API Reference
 
