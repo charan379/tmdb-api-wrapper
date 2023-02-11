@@ -94,6 +94,7 @@ router.get("/config", function (req, res, next) {
  *      404:
  *       description: No Data Avaialble
  */
+// search
 /* GET tmdb search */
 router.get("/search", function (req, res, next) {
   try {
@@ -140,6 +141,7 @@ router.get("/search", function (req, res, next) {
  *      404:
  *       description: No Data Avaialble
  */
+// movieDetails
 /* GET tmdb movie details */
 router.get("/movie/:tmdb_id", function (req, res, next) {
   try {
@@ -185,6 +187,7 @@ router.get("/movie/:tmdb_id", function (req, res, next) {
  *      404:
  *       description: No Data Avaialble
  */
+// tvDetails
 /* GET tmdb tv details */
 router.get("/tv/:tmdb_id", function (req, res, next) {
   try {
@@ -235,6 +238,7 @@ router.get("/tv/:tmdb_id", function (req, res, next) {
  *      404:
  *       description: No Data Avaialble
  */
+// tvSeasonDetails
 /* GET tmdb tv-season details */
 router.get("/tv/:tmdb_tv_id/season/:season_number", function (req, res, next) {
   try {
