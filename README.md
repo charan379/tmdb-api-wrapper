@@ -57,7 +57,7 @@ Server will start running on given port
 #### Following is the list of supports API End points by [tmdb-api-wrapper](https://github.com/charan379/tmdb-api-wrapper)
 
 | Name | API END Point     | Example | Status   |
-| :------------------------------------- | :-------------------------- | :-------------------------| :------- |
+| :------------------------------------- | :--------------- | :------------| :------- |
 | `search` | `GET` [`/tmdb/search`](#get-search) | ```/tmdb/search?query=fight%20club&type=movie&year=1999&pageNo=1``` | **:green_circle:** |
 | `movie details` | `GET` [`/tmdb/movie/{tmdb_id}`](#get-movie-details) | ```/tmdb/movie/550``` | **:green_circle:** |
 | `tv details` | `GET` [`/tmdb/tv/{tmdb_id}`](#get-tv-details) | ```/tmdb/tv/1399``` | **:green_circle:** |
