@@ -100,11 +100,16 @@ router.get("/search", function (req, res, next) {
   try {
     searchTmdb({ ...req.query })
       .then((response) => {
-        res.status(200).json(response);
+        res.status(200).json({
+          success: true,
+          stauts: "Request success",
+          result: response
+        });
       })
       .catch((error) => {
         res.status(404).json({
           code: 404,
+          success: false,
           errorMessage: error.message,
           stauts: "Request Failed at Controller",
         });
@@ -112,6 +117,7 @@ router.get("/search", function (req, res, next) {
   } catch (error) {
     res.status(500).json({
       code: 500,
+      success: false,
       errorMessage: "Internal Server Error 500",
       status: "Request Faild at Router",
     });
@@ -147,11 +153,16 @@ router.get("/movie/:tmdb_id", function (req, res, next) {
   try {
     getTmdbMovie(req.params.tmdb_id)
       .then((response) => {
-        res.status(200).json(response);
+        res.status(200).json({
+          success: true,
+          stauts: "Request success",
+          result: response
+        });
       })
       .catch((error) => {
         res.status(404).json({
           code: 404,
+          success: false,
           errorMessage: error.message,
           stauts: "Request Failed at Controller",
         });
@@ -159,6 +170,7 @@ router.get("/movie/:tmdb_id", function (req, res, next) {
   } catch (error) {
     res.status(500).json({
       code: 500,
+      success: false,
       errorMessage: "Internal Server Error 500",
       status: "Request Faild at Router",
     });
@@ -193,11 +205,16 @@ router.get("/tv/:tmdb_id", function (req, res, next) {
   try {
     getTmdbTv(req.params.tmdb_id)
       .then((response) => {
-        res.status(200).json(response);
+        res.status(200).json({
+          success: true,
+          stauts: "Request success",
+          result: response
+        });
       })
       .catch((error) => {
         res.status(404).json({
           code: 404,
+          success: false,
           errorMessage: error.message,
           stauts: "Request Failed at Controller",
         });
@@ -205,6 +222,7 @@ router.get("/tv/:tmdb_id", function (req, res, next) {
   } catch (error) {
     res.status(500).json({
       code: 500,
+      success: false,
       errorMessage: "Internal Server Error 500",
       status: "Request Faild at Router",
     });
@@ -244,11 +262,16 @@ router.get("/tv/:tmdb_tv_id/season/:season_number", function (req, res, next) {
   try {
     getTmdbTvSeason({ ...req.params })
       .then((response) => {
-        res.status(200).json(response);
+        res.status(200).json({
+          success: true,
+          stauts: "Request success",
+          result: response
+        });
       })
       .catch((error) => {
         res.status(404).json({
           code: 404,
+          success: false,
           errorMessage: error.message,
           stauts: "Request Failed at Controller",
         });
@@ -256,8 +279,9 @@ router.get("/tv/:tmdb_tv_id/season/:season_number", function (req, res, next) {
   } catch (error) {
     res.status(500).json({
       code: 500,
+      success: false,
       errorMessage: "Internal Server Error 500",
-      status: "Request Faild at Router",
+      status: "Request Failed at Router",
     });
   }
 });
