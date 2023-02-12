@@ -4,7 +4,7 @@
  *      @author : charanteja379
  *      @email  : charanteja379@gmail.com
  *  	  @createedOn : 2023-01-27 12:42:28
- *      @lastModifiedOn : 2023-02-12 13:29:04
+ *      @lastModifiedOn : 2023-02-12 15:02:45
  *  	  @desc   : [description]
  *
  *  #########################################################
@@ -42,7 +42,7 @@ const axios = require('axios');
    //return result with required data
    const movieList = tmdbdata.results.map((movie) => {
      return {
-       tmdbId: movie.id,
+       tmdb_id: movie.id,
        link: `/view/tmdb/${type}/${movie.id}/${encodeURIComponent(
          (getTitle(movie, type) + "-" + getYear(movie, type)).replace(
            /[^a-zA-Z0-9]/g,
@@ -50,7 +50,7 @@ const axios = require('axios');
          )
        )}`,
  
-       posterPath: `${TmdbConfig.tmdbImagesUrl}w500${movie.poster_path}`,
+       poster_path: `${TmdbConfig.tmdbImagesUrl}w500${movie.poster_path}`,
  
        title: getTitle(movie, type),
  
@@ -58,7 +58,7 @@ const axios = require('axios');
  
        ratting: movie.vote_average ||  0,
  
-       titleType: type,
+       title_type: type,
  
        source: "tmdb",
      };
@@ -67,8 +67,8 @@ const axios = require('axios');
    return {
      currnetPage: tmdbdata.page,
      movieList,
-     totalPages: tmdbdata.total_pages,
-     totalResults: tmdbdata.total_results,
+     total_pages: tmdbdata.total_pages,
+     total_results: tmdbdata.total_results,
      source: "tmdb",
    };
  };

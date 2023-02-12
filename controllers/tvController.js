@@ -6,33 +6,33 @@ const buildTv = (tvData) => {
   const tv = {
     source: "tmdb",
 
-    tmdbId: tvData.id,
+    tmdb_id: tvData.id,
 
-    imdbId: tvData.imdb_id,
+    imdb_id: tvData.imdb_id,
 
-    posterPath: `${TmdbConfig.tmdbImagesUrl}w500${tvData.poster_path}`,
+    poster_path: `${TmdbConfig.tmdbImagesUrl}w500${tvData.poster_path}`,
 
     tagline: tvData.tagline,
 
     title: tvData.name,
     
-    originalTitle: tvData.original_name,
+    original_title: tvData.original_name,
 
     genres: tvData.genres,
 
-    originalLanguage: getLanguage(tvData.original_language),
+    original_language: getLanguage(tvData.original_language),
 
     languages : tvData.languages.map(language => getLanguage(language)),
 
-    titleType: "tv",
+    title_type: "tv",
 
     production_companies: tvData.production_companies,
 
-    productionCountries: tvData.production_countries,
+    production_countries: tvData.production_countries,
 
     status: tvData.status,
 
-    releaseDate: tvData.first_air_date,
+    release_date: tvData.first_air_date,
 
     year: tvData.first_air_date
       ? new Date(tvData.first_air_date).getFullYear()
@@ -48,25 +48,25 @@ const buildTv = (tvData) => {
 
     cast: getCast(tvData.credits),
 
-    inProduction : tvData.in_production,
+    in_production : tvData.in_production,
 
-    createdBy : tvData.created_by,
+    created_by : tvData.created_by,
 
-    lastAiredDate : tvData.last_air_date,
+    last_aired_date : tvData.last_air_date,
 
-    lastEpisodeAired :  tvData.last_episode_to_air ? {
+    last_episode_aired :  tvData.last_episode_to_air ? {
       ...tvData.last_episode_to_air, still_path : `${TmdbConfig.tmdbImagesUrl}w300${tvData.last_episode_to_air.still_path}`
     } : null,
 
-    nextEpisodeToAir : tvData.next_episode_to_air ? {
+    next_episode_to_air : tvData.next_episode_to_air ? {
       ...tvData.next_episode_to_air , still_path : `${TmdbConfig.tmdbImagesUrl}w300${tvData.next_episode_to_air.still_path}`
     } : null,
 
     networks : tvData.networks,
 
-    numberOfSeasons : tvData.number_of_seasons || 0,
+    number_of_seasons : tvData.number_of_seasons || 0,
 
-    numberOfEpisodes : tvData.number_of_episodes || 0,
+    number_of_episodes : tvData.number_of_episodes || 0,
 
     seasons : tvData.seasons.map(season => {
       return ({

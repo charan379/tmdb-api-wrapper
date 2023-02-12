@@ -6,11 +6,11 @@ const buildMovie = (movieData) => {
   const movie = {
     source: "tmdb",
     
-    tmdbId: movieData.id,
+    tmdb_id: movieData.id,
 
-    imdbId: movieData.imdb_id,
+    imdb_id: movieData.imdb_id,
 
-    posterPath: `${TmdbConfig.tmdbImagesUrl}w500${movieData.poster_path}`,
+    poster_path: `${TmdbConfig.tmdbImagesUrl}w500${movieData.poster_path}`,
 
     tagline: movieData.tagline,
 
@@ -18,19 +18,19 @@ const buildMovie = (movieData) => {
 
     genres: movieData.genres,
 
-    originalTitle: movieData.original_title,
+    original_title: movieData.original_title,
 
-    originalLanguage: getLanguage(movieData.original_language),
+    original_language: getLanguage(movieData.original_language),
 
-    titleType: "movie",
+    title_type: "movie",
 
-    productionCompanies: movieData.production_companies,
+    production_companies: movieData.production_companies,
 
-    productionCountries: movieData.production_countries,
+    production_countries: movieData.production_countries,
 
     status: movieData.status,
 
-    releaseDate: movieData.release_date,
+    release_date: movieData.release_date,
 
     year: new Date(movieData.release_date).getFullYear() || null,
 

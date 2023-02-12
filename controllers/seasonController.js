@@ -4,11 +4,11 @@ const TmdbConfig = require('../utils/TmdbConfig');
 const buildTvSeason = (tvSeason) => {
 
     return({
-        tmdbId : tvSeason.id,
-        seasonNumber : tvSeason.season_number,
+        tmdb_id : tvSeason.id,
+        season_number : tvSeason.season_number,
         name : tvSeason.name,
-        releaseDate : tvSeason.air_date, 
-        posterPath : `${TmdbConfig.tmdbImagesUrl}w342/${tvSeason.poster_path}`,
+        release_date : tvSeason.air_date, 
+        poster_path : `${TmdbConfig.tmdbImagesUrl}w342${tvSeason.poster_path}`,
         overview : tvSeason.overview,
         episodes : tvSeason.episodes.map(episode => buildEpisode(episode))
     })
@@ -31,14 +31,14 @@ const buildEpisode = (episode) =>{
     
 
     return({
-        tmdbId : episode.id,
-        episodeNumber : episode.episode_number,
+        tmdb_id : episode.id,
+        episode_number : episode.episode_number,
         name : episode.name,
         overview : episode.overview,
-        seasonNumber : episode.season_number,
-        tmdbShowId : episode.show_id,
-        stillPath : `${TmdbConfig.tmdbImagesUrl}w300/${episode.still_path}`,
-        airDate : episode.air_date,
+        season_number : episode.season_number,
+        tmdb_show_id : episode.show_id,
+        still_path : `${TmdbConfig.tmdbImagesUrl}w300${episode.still_path}`,
+        air_date : episode.air_date,
         runtime : episode.runtime,
         directors : getDirectors(episode.crew)
     })
