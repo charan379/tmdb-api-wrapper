@@ -4,11 +4,13 @@ const iso = require("../utils/iso369-1.json");
 
 const buildMovie = (movieData) => {
   const movie = {
-    tmdb_id: movieData.id,
+    source: "tmdb",
+    
+    tmdbId: movieData.id,
 
-    imdb_id: movieData.imdb_id,
+    imdbId: movieData.imdb_id,
 
-    poster_path: `${TmdbConfig.tmdbImagesUrl}w500${movieData.poster_path}`,
+    posterPath: `${TmdbConfig.tmdbImagesUrl}w500${movieData.poster_path}`,
 
     tagline: movieData.tagline,
 
@@ -16,19 +18,19 @@ const buildMovie = (movieData) => {
 
     genres: movieData.genres,
 
-    original_title: movieData.original_title,
+    originalTitle: movieData.original_title,
 
-    original_language: getLanguage(movieData.original_language),
+    originalLanguage: getLanguage(movieData.original_language),
 
     titleType: "movie",
 
-    production_companies: movieData.production_companies,
+    productionCompanies: movieData.production_companies,
 
-    production_countries: movieData.production_countries,
+    productionCountries: movieData.production_countries,
 
     status: movieData.status,
 
-    release_date: movieData.release_date,
+    releaseDate: movieData.release_date,
 
     year: new Date(movieData.release_date).getFullYear() || null,
 
