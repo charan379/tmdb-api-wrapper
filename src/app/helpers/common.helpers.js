@@ -3,13 +3,13 @@ const iso = require("../utils/iso369-1.json");
 exports.getDirectors = (credits) => {
   try {
     let directors = [];
-    credits.crew.map((person) =>
+    credits.map((person) =>
       person.job === "Director" ? directors.push(person.name) : null
     );
     return directors;
   } catch (err) {
     console.log(err);
-    return ["No Data Found"];
+    return null;
   }
 };
 
@@ -24,7 +24,7 @@ exports.getCast = (credits) => {
     return cast;
   } catch (err) {
     console.log(err);
-    return ["No Data Found"];
+    return null;
   }
 };
 
@@ -40,6 +40,47 @@ exports.getProviders = (streaming_on) => {
   try {
     return streaming_on.flatrate.map((provider) => provider.provider_name);
   } catch (err) {
-    return ["No Data Found"];
+    return null;
   }
 };
+
+exports.getProductionCompanies = (production_companies) => {
+  try {
+    return production_companies.map((company) => company.name);
+  } catch (error) {
+    return null;
+  }
+};
+
+exports.getProductionCountries = (production_countries) => {
+  try {
+    return production_countries.map((country) => country.name);
+  } catch (error) {
+    return null;
+  }
+};
+
+exports.getGenres = (genres) => {
+  try {
+    return genres.map((genre) => genre.name);
+  } catch (error) {
+    return ["Unknown"];
+  }
+};
+
+exports.getCreators = (created_by) => {
+  try {
+    return created_by.map((creator) => creator.name);
+  } catch (error) {
+    return null
+  }
+};
+
+
+exports.getNetworks = (networks) => {
+  try {
+    return networks.map((network) => network.name);
+  } catch (error) {
+    return null
+  }
+}

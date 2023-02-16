@@ -4,6 +4,11 @@ const {
   getProviders,
   getDirectors,
   getCast,
+  getGenres,
+  getProductionCompanies,
+  getProductionCountries,
+  getNetworks,
+  getCreators,
 } = require("../helpers/common.helpers");
 
 const tvBuilder = (tvData) => {
@@ -34,13 +39,13 @@ const tvBuilder = (tvData) => {
 
     runtime: tvData.episode_run_time,
 
-    genres: tvData.genres,
+    genres: getGenres(tvData.genres),
 
     overview: tvData.overview,
 
-    production_companies: tvData.production_companies,
+    production_companies: getProductionCompanies(tvData.production_companies),
 
-    production_countries: tvData.production_countries,
+    production_countries: getProductionCountries(tvData.production_countries),
 
     status: tvData.status,
 
@@ -48,13 +53,13 @@ const tvBuilder = (tvData) => {
 
     providers: getProviders(tvData["watch/providers"].results.IN),
 
-    directors: getDirectors(tvData.credits),
+    directors: getDirectors(tvData.credits.crew),
 
     cast: getCast(tvData.credits),
 
     in_production: tvData.in_production,
 
-    created_by: tvData.created_by,
+    created_by: getCreators(tvData.created_by),
 
     last_aired_date: tvData.last_air_date,
 
@@ -72,7 +77,7 @@ const tvBuilder = (tvData) => {
         }
       : null,
 
-    networks: tvData.networks,
+    networks: getNetworks(tvData.networks),
 
     number_of_seasons: tvData.number_of_seasons || 0,
 
@@ -81,7 +86,7 @@ const tvBuilder = (tvData) => {
     seasons: tvData.seasons.map((season) => {
       return {
         ...season,
-        poster_path: `${TmdbConfig.tmdbImagesUrl}/w300/${season.poster_path}`,
+        poster_path: `${TmdbConfig.tmdbImagesUrl}w300${season.poster_path}`,
         tmdb_show_id: tvData.id,
       };
     }),

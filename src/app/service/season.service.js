@@ -1,5 +1,7 @@
 const { default: axios } = require("axios");
 const buildTvSeason = require("../builders/season.builder");
+const { NoResultsFound } = require("../erros/tmdbAPI.erros");
+const TMDBAPIException = require("../utils/Exceptions");
 const TmdbConfig = require("../utils/TmdbConfig");
 
 const getTmdbTvSeason = ({ tmdb_tv_id, season_number }) => {
@@ -20,7 +22,15 @@ const getTmdbTvSeason = ({ tmdb_tv_id, season_number }) => {
         if (axios.isCancel(error)) {
           // do nothing
         } else {
-          reject(error);
+          if (error.response.data) {
+            reject(
+              new TMDBAPIException(
+                NoResultsFound(`${JSON.stringify({tmdb_tv_id, season_number}).replace(/"/g,"'")}`)
+              )
+            );
+          } else {
+            reject(error);
+          }
         }
       });
   });

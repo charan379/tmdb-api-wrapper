@@ -1,6 +1,8 @@
 const TmdbConfig = require("../utils/TmdbConfig");
 const buildList = require("../builders/searchResults.builder");
 const axios = require("axios");
+const TMDBAPIException = require("../utils/Exceptions");
+const { NoResultsFound, QueryRequired } = require("../erros/tmdbAPI.erros");
 
 // get movies list from tmdb
 module.exports.searchTmdb = async (
@@ -11,6 +13,9 @@ module.exports.searchTmdb = async (
     pageNo: "",
   }
 ) => {
+  if (!search.query) {
+    throw new TMDBAPIException(QueryRequired("Search query not provided"));
+  }
   //url templete
   const url = `${TmdbConfig.tmdbApiUrl}
                   search/
@@ -36,21 +41,33 @@ module.exports.searchTmdb = async (
     axios
       .get(url)
       .then((result) => {
-        if (result.data.total_results) {
+        if (result.data.total_results >= 1) {
           resolve(buildList(result.data, search.type || "movie"));
         } else {
-          reject({
-            message: "No Data Found",
-            error: "No Data Found",
-            errorType: "Empty Result",
-          });
+          reject(
+            new TMDBAPIException(
+              NoResultsFound(JSON.stringify(search).replace(/"/g, "'"))
+            )
+          );
         }
       })
       .catch((error) => {
         if (axios.isCancel(error)) {
           // do nothing
         } else {
-          reject(error);
+          if (error.response.data) {
+            reject(
+              new TMDBAPIException(
+                NoResultsFound(
+                  `${JSON.stringify(search).replace(/"/g, "'")},  ${
+                    error.response.data.status_message
+                  }`
+                )
+              )
+            );
+          } else {
+            reject(error);
+          }
         }
       });
   });

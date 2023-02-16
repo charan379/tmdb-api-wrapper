@@ -1,5 +1,13 @@
 const TmdbConfig = require("../utils/TmdbConfig");
-const { getLanguage, getDirectors, getCast, getProviders } = require("../helpers/common.helpers");
+const {
+  getLanguage,
+  getDirectors,
+  getCast,
+  getProviders,
+  getProductionCompanies,
+  getProductionCountries,
+  getGenres,
+} = require("../helpers/common.helpers");
 
 const movieBuilder = (movieData) => {
   const movie = {
@@ -27,16 +35,16 @@ const movieBuilder = (movieData) => {
 
     runtime: movieData.runtime,
 
-    genres: movieData.genres,
+    genres: getGenres(movieData.genres),
 
     overview: movieData.overview,
 
-    production_companies: movieData.production_companies.map(
-      (company) => company.name
+    production_companies: getProductionCompanies(
+      movieData.production_companies
     ),
 
-    production_countries: movieData.production_countries.map(
-      (country) => country.name
+    production_countries: getProductionCountries(
+      movieData.production_countries
     ),
 
     status: movieData.status,
@@ -45,7 +53,7 @@ const movieBuilder = (movieData) => {
 
     providers: getProviders(movieData["watch/providers"].results.IN),
 
-    directors: getDirectors(movieData.credits),
+    directors: getDirectors(movieData.credits.crew),
 
     cast: getCast(movieData.credits),
   };

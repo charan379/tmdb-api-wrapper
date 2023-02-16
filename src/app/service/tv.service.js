@@ -1,6 +1,8 @@
-const axios = require('axios');
-const buildTv = require('../builders/tv.builder')
-const TmdbConfig = require('../utils/TmdbConfig');
+const axios = require("axios");
+const buildTv = require("../builders/tv.builder");
+const { TitleNotFound } = require("../erros/tmdbAPI.erros");
+const TMDBAPIException = require("../utils/Exceptions");
+const TmdbConfig = require("../utils/TmdbConfig");
 
 module.exports.getTmdbTv = (tmdb_id) => {
   const url = `${TmdbConfig.tmdbApiUrl}
@@ -21,7 +23,17 @@ module.exports.getTmdbTv = (tmdb_id) => {
         if (axios.isCancel(error)) {
           // do nothing
         } else {
-          reject(error);
+          if (error.response.data) {
+            reject(
+              new TMDBAPIException(
+                TitleNotFound(
+                  `${tmdb_id}, ${error.response.data.status_message}`
+                )
+              )
+            );
+          } else {
+            reject(error);
+          }
         }
       });
   });
