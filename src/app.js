@@ -5,17 +5,17 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const stylus = require("stylus");
 require("dotenv").config();
-const indexRouter = require("./routes/index");
-const usersRouter = require("./routes/users");
-const tmdbRouter = require("./routes/tmdb");
-const mylogger = require("./utils/myLogger");
+const indexRouter = require("./app/routes/index");
+const usersRouter = require("./app/routes/users");
+const tmdbRouter = require("./app/routes/tmdb.routes");
+const mylogger = require("./app/utils/myLogger");
 const swaggerJSDoc = require("swagger-jsdoc");
-const swaggerUi = require('swagger-ui-express');
+const swaggerUi = require("swagger-ui-express");
 
 const app = express();
 
 // view engine setup
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "./app/views"));
 app.set("view engine", "pug");
 
 // swagger API Documentation
@@ -39,18 +39,18 @@ const swaggerOptions = {
       servers: ["http://localhost:3000"],
     },
   },
-  apis : ['./routes/tmdb.js' ]
+  apis: [path.join(process.cwd(),"./src/app/routes/*.js")],
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(stylus.middleware(path.join(__dirname, "public")));
-app.use(express.static(path.join(__dirname, "public")));
+app.use(stylus.middleware(path.join(__dirname, "../public")));
+app.use(express.static(path.join(__dirname, "../public")));
 
 // logger
 // app.use(mylogger);

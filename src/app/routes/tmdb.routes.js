@@ -1,8 +1,8 @@
 const express = require("express");
-const getTmdbMovie = require("../controllers/movieController");
-const searchTmdb = require("../controllers/searchController");
-const getTmdbTvSeason = require("../controllers/seasonController");
-const getTmdbTv = require("../controllers/tvController");
+const { movieController } = require("../controllers/movie.controller");
+const { searchController } = require("../controllers/search.controller");
+const { seasonController } = require("../controllers/season.controller");
+const { tvController } = require("../controllers/tv.controller");
 const TmdbConfig = require("../utils/TmdbConfig");
 const router = express.Router();
 
@@ -29,13 +29,11 @@ router.get("/", function (req, res, next) {
  *                example: Alex
  */
 
-
-
 /**
  * @swagger
  * /tmdb/config:
  *  get:
- *    tags: 
+ *    tags:
  *      - tmdb
  *    summary: API to fetch configuration of tmdb
  *    description: Retirve a list of configuration variables
@@ -51,12 +49,11 @@ router.get("/config", function (req, res, next) {
   });
 });
 
-
 /**
  * @swagger
  * /tmdb/search:
  *  get:
- *    tags: 
+ *    tags:
  *      - tmdb
  *    summary: API to fetch movies or tv shows from tmdb
  *    description: Retirve a list of movies or tv shows from tmdb
@@ -96,42 +93,14 @@ router.get("/config", function (req, res, next) {
  */
 // search
 /* GET tmdb search */
-router.get("/search", function (req, res, next) {
-  try {
-    searchTmdb({ ...req.query })
-      .then((response) => {
-        res.status(200).json({
-          success: true,
-          stauts: "Request success",
-          result: response
-        });
-      })
-      .catch((error) => {
-        res.status(404).json({
-          code: 404,
-          success: false,
-          errorMessage: error.message,
-          stauts: "Request Failed at Controller",
-        });
-      });
-  } catch (error) {
-    res.status(500).json({
-      code: 500,
-      success: false,
-      errorMessage: "Internal Server Error 500",
-      status: "Request Faild at Router",
-    });
-  }
-});
-
-
+router.get("/search", searchController);
 
 /**
  * @swagger
  * /tmdb/movie/{tmdb_id}:
  *  get:
- *    tags: 
- *      - tmdb 
+ *    tags:
+ *      - tmdb
  *    summary: API to fetch movie details from tmdb
  *    description: Retirve movie details from tmdb
  *    parameters:
@@ -149,41 +118,14 @@ router.get("/search", function (req, res, next) {
  */
 // movieDetails
 /* GET tmdb movie details */
-router.get("/movie/:tmdb_id", function (req, res, next) {
-  try {
-    getTmdbMovie(req.params.tmdb_id)
-      .then((response) => {
-        res.status(200).json({
-          success: true,
-          stauts: "Request success",
-          result: response
-        });
-      })
-      .catch((error) => {
-        res.status(404).json({
-          code: 404,
-          success: false,
-          errorMessage: error.message,
-          stauts: "Request Failed at Controller",
-        });
-      });
-  } catch (error) {
-    res.status(500).json({
-      code: 500,
-      success: false,
-      errorMessage: "Internal Server Error 500",
-      status: "Request Faild at Router",
-    });
-  }
-});
-
+router.get("/movie/:tmdb_id", movieController);
 
 /**
  * @swagger
  * /tmdb/tv/{tmdb_id}:
  *  get:
- *    tags: 
- *      - tmdb 
+ *    tags:
+ *      - tmdb
  *    summary: API to fetch tv show details from tmdb
  *    description: Retirve tv show details from tmdb
  *    parameters:
@@ -201,39 +143,13 @@ router.get("/movie/:tmdb_id", function (req, res, next) {
  */
 // tvDetails
 /* GET tmdb tv details */
-router.get("/tv/:tmdb_id", function (req, res, next) {
-  try {
-    getTmdbTv(req.params.tmdb_id)
-      .then((response) => {
-        res.status(200).json({
-          success: true,
-          stauts: "Request success",
-          result: response
-        });
-      })
-      .catch((error) => {
-        res.status(404).json({
-          code: 404,
-          success: false,
-          errorMessage: error.message,
-          stauts: "Request Failed at Controller",
-        });
-      });
-  } catch (error) {
-    res.status(500).json({
-      code: 500,
-      success: false,
-      errorMessage: "Internal Server Error 500",
-      status: "Request Faild at Router",
-    });
-  }
-});
+router.get("/tv/:tmdb_id", tvController);
 
 /**
  * @swagger
  * /tmdb/tv/{tmdb_tv_id}/season/{season_number}:
  *  get:
- *    tags: 
+ *    tags:
  *      - tmdb
  *    summary: API to fetch tv show season details from tmdb
  *    description: Retirve tv show season details from tmdb
@@ -258,31 +174,5 @@ router.get("/tv/:tmdb_id", function (req, res, next) {
  */
 // tvSeasonDetails
 /* GET tmdb tv-season details */
-router.get("/tv/:tmdb_tv_id/season/:season_number", function (req, res, next) {
-  try {
-    getTmdbTvSeason({ ...req.params })
-      .then((response) => {
-        res.status(200).json({
-          success: true,
-          stauts: "Request success",
-          result: response
-        });
-      })
-      .catch((error) => {
-        res.status(404).json({
-          code: 404,
-          success: false,
-          errorMessage: error.message,
-          stauts: "Request Failed at Controller",
-        });
-      });
-  } catch (error) {
-    res.status(500).json({
-      code: 500,
-      success: false,
-      errorMessage: "Internal Server Error 500",
-      status: "Request Failed at Router",
-    });
-  }
-});
+router.get("/tv/:tmdb_tv_id/season/:season_number", seasonController);
 module.exports = router;
