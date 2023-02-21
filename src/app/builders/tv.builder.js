@@ -9,6 +9,7 @@ const {
   getProductionCountries,
   getNetworks,
   getCreators,
+  getRuntime,
 } = require("../helpers/common.helpers");
 
 const tvBuilder = (tvData) => {
@@ -37,7 +38,11 @@ const tvBuilder = (tvData) => {
       ? new Date(tvData.first_air_date).getFullYear()
       : null,
 
-    runtime: tvData.episode_run_time,
+    runtime: getRuntime(tvData.episode_run_time),
+
+    ratting: tvData.vote_average || 0,
+
+    age_ratting: null,
 
     genres: getGenres(tvData.genres),
 

@@ -72,15 +72,24 @@ exports.getCreators = (created_by) => {
   try {
     return created_by.map((creator) => creator.name);
   } catch (error) {
-    return null
+    return null;
   }
 };
-
 
 exports.getNetworks = (networks) => {
   try {
     return networks.map((network) => network.name);
   } catch (error) {
-    return null
+    return null;
   }
-}
+};
+
+exports.getRuntime = (runtimeArray) => {
+  try {
+    runtimeArray.reduce((accumlator, currentValue) => {
+      return currentValue >= accumlator ? currentValue : accumlator;
+    });
+  } catch (error) {
+    return 0;
+  }
+};

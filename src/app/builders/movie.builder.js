@@ -33,6 +33,10 @@ const movieBuilder = (movieData) => {
 
     year: new Date(movieData.release_date).getFullYear() || null,
 
+    runtime: movieData.episode_run_time,
+
+    ratting: movieData.vote_average || 0,
+
     runtime: movieData.runtime,
 
     genres: getGenres(movieData.genres),
