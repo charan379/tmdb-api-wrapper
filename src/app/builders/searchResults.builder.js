@@ -30,8 +30,8 @@ const searchResultsBuilder = (tmdbdata, type) => {
   });
 
   return {
-    currnetPage: tmdbdata.page,
-    movieList,
+    page: tmdbdata.page,
+    list: movieList,
     total_pages: tmdbdata.total_pages,
     total_results: tmdbdata.total_results,
     source: "tmdb",
