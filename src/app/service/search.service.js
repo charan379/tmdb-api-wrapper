@@ -5,7 +5,7 @@ const TMDBAPIException = require("../utils/Exceptions");
 const { NoResultsFound, QueryRequired } = require("../erros/tmdbAPI.erros");
 
 // get movies list from tmdb
-module.exports.searchTmdb = async (
+module.exports.searchTmdb =  (
   search = {
     type: "movie",
     query: "",
@@ -41,15 +41,7 @@ module.exports.searchTmdb = async (
     axios
       .get(url)
       .then((result) => {
-        if (result.data.total_results >= 1) {
-          resolve(buildList(result.data, search.type || "movie"));
-        } else {
-          reject(
-            new TMDBAPIException(
-              NoResultsFound(JSON.stringify(search).replace(/"/g, "'"))
-            )
-          );
-        }
+        resolve(buildList(result.data, search.type || "movie"));
       })
       .catch((error) => {
         if (axios.isCancel(error)) {

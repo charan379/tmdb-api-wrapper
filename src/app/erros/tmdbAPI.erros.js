@@ -5,7 +5,7 @@ exports.NoResultsFound = (info) => {
     code: "TMDBAPI_NRF",
     message: "No Results Found",
     reason: "Query : " + info,
-    httpCode: HttpCodes.NOT_FOUND.code,
+    httpCode: HttpCodes.BAD_REQUEST.code,
   };
 };
 
@@ -14,7 +14,7 @@ exports.TitleNotFound = (info) => {
     code: "TMDBAPI_TNF",
     message: "Requested title not found",
     reason: "tmdb_id : " + info,
-    httpCode: HttpCodes.NOT_FOUND.code,
+    httpCode: HttpCodes.BAD_REQUEST.code,
   };
 };
 
