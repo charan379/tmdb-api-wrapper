@@ -30,7 +30,7 @@ exports.getCast = (credits) => {
 
 exports.getLanguage = (iso_code) => {
   try {
-    return iso.find((ele) => ele["639_1_code"] === iso_code);
+    return iso.find((ele) => ele["ISO_639_1_code"] === iso_code);
   } catch (err) {
     return "Error with ISO Converstion";
   }
