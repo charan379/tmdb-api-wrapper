@@ -1,6 +1,6 @@
 # tmdb-api-wrapper :clapper:
 
-[![VERSION](https://img.shields.io/badge/VERSION-v1.0.3-sucess)](https://github.com/charan379/tmdb-api-wrapper)    [![LAST UPDATD](https://img.shields.io/badge/LAST--UPDATED-21--Feb--2023-sucess)](https://github.com/charan379/tmdb-api-wrapper) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
+[![VERSION](https://img.shields.io/badge/VERSION-v1.0.4-sucess)](https://github.com/charan379/tmdb-api-wrapper)    [![LAST UPDATD](https://img.shields.io/badge/LAST--UPDATED-08--March--2023-sucess)](https://github.com/charan379/tmdb-api-wrapper) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 This is REST API application consumes tmdb api and adds a wrapper. Basically Developed as part of MovieBunkers Application
 

@@ -4,15 +4,21 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const stylus = require("stylus");
+const cors = require("cors");
 require("dotenv").config();
 const indexRouter = require("./app/routes/index");
 const usersRouter = require("./app/routes/users");
 const tmdbRouter = require("./app/routes/tmdb.routes");
-const mylogger = require("./app/utils/myLogger");
 const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
+const ErrorResponse = require("./app/utils/ErrorResponse");
+const TMDBAPIException = require("./app/utils/Exceptions");
 
 const app = express();
+
+app.use(cors({
+  origin: '*'
+}));
 
 // view engine setup
 app.set("views", path.join(__dirname, "./app/views"));
@@ -27,7 +33,7 @@ const swaggerOptions = {
       title: "tmdb-api-wrapper",
       description:
         "This is REST API application consumes tmdb api and adds a wrapper. Basically Developed as part of  MovieBunkers Application",
-      version: "1.0.3",
+      version: "1.0.4",
       contact: {
         name: "charan379",
         url: "#",
@@ -39,7 +45,7 @@ const swaggerOptions = {
       servers: ["http://localhost:3000"],
     },
   },
-  apis: [path.join(process.cwd(),"./src/app/routes/*.js")],
+  apis: [path.join(process.cwd(), "./src/app/routes/*.js")],
 };
 
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
@@ -71,9 +77,18 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+  if (err instanceof TMDBAPIException) {
+    res.status(err.httpCode).json(ErrorResponse(err));
+    return 0;
+  }
+
+  if (err.status === 404) {
+    res.status(404).json(ErrorResponse(err));
+  } else {
+    res.status(err.status || 500);
+    // res.render("error");
+    res.json(ErrorResponse(err))
+  }
 });
 
 module.exports = app;
