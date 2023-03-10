@@ -22,7 +22,7 @@ const getTmdbTvSeason = ({ tmdb_tv_id, season_number }) => {
         if (axios.isCancel(error)) {
           // do nothing
         } else {
-          if (error.response.data) {
+          if (error?.response?.data) {
             reject(
               new TMDBAPIException(
                 NoResultsFound(`${JSON.stringify({tmdb_tv_id, season_number}).replace(/"/g,"'")}`)

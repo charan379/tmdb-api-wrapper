@@ -25,7 +25,7 @@ module.exports.getTmdbMovie = (tmdb_id) => {
         if (axios.isCancel(error)) {
           // do nothing
         } else {
-          if (error.response.data) {
+          if (error?.response?.data) {
             reject(
               new TMDBAPIException(
                 TitleNotFound(
