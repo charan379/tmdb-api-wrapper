@@ -93,3 +93,46 @@ exports.getRuntime = (runtimeArray) => {
     return 0;
   }
 };
+
+exports.getAgeRattings = ({ title_type, certifications }) => {
+
+  try {
+
+    let age_rattings = [];
+    const results = certifications?.results ?? [];
+    switch (title_type) {
+      case "movie":
+
+        if (results.length > 0) {
+          for (let index = 0; index < results.length; index++) {
+            const result = results[index];
+            const country = result?.iso_3166_1;
+            const ratting = result?.release_dates[0]?.certification;
+            if (country && ratting) age_rattings.push({ country, ratting })
+          }
+        }
+        break;
+      case "tv":
+
+        if (results.length > 0) {
+          for (let index = 0; index < results.length; index++) {
+            const result = results[index];
+            const country = result?.iso_3166_1;
+            const ratting = result?.rating;
+            if (country && ratting) age_rattings.push({ country, ratting });
+          }
+        }
+        break;
+
+      default:
+        break;
+    }
+
+    return age_rattings;
+
+  } catch (error) {
+
+    return [];
+
+  }
+}

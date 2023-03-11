@@ -11,7 +11,7 @@ module.exports.getTmdbMovie = (tmdb_id) => {
                 movie/
                 ${tmdb_id}
                 ?api_key=${TmdbConfig.tmdbApiKey}&
-                append_to_response=watch/providers,credits`
+                append_to_response=watch/providers,credits,release_dates`
     .replace(/\n/g, "")
     .replace(/ /g, "");
 

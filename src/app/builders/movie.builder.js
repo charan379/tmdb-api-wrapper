@@ -7,6 +7,7 @@ const {
   getProductionCompanies,
   getProductionCountries,
   getGenres,
+  getAgeRattings,
 } = require("../helpers/common.helpers");
 
 const movieBuilder = (movieData) => {
@@ -34,6 +35,8 @@ const movieBuilder = (movieData) => {
     year: new Date(movieData.release_date).getFullYear() || null,
 
     runtime: movieData.episode_run_time,
+
+    age_rattings: getAgeRattings({ title_type: "movie", certifications: movieData?.release_dates }),
 
     ratting: movieData.vote_average || 0,
 

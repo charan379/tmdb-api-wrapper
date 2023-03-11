@@ -9,7 +9,7 @@ module.exports.getTmdbTv = (tmdb_id) => {
                   tv/
                   ${tmdb_id}
                   ?api_key=${TmdbConfig.tmdbApiKey}&
-                  append_to_response=watch/providers,credits`
+                  append_to_response=watch/providers,credits,content_ratings`
     .replace(/\n/g, "")
     .replace(/ /g, "");
 
