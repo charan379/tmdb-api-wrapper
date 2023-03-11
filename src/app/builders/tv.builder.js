@@ -10,6 +10,7 @@ const {
   getNetworks,
   getCreators,
   getRuntime,
+  getAgeRattings,
 } = require("../helpers/common.helpers");
 
 const tvBuilder = (tvData) => {
@@ -40,9 +41,9 @@ const tvBuilder = (tvData) => {
 
     runtime: getRuntime(tvData.episode_run_time),
 
+    age_rattings: getAgeRattings({ title_type: "tv", certifications: tvData?.content_ratings }),
+    
     ratting: tvData.vote_average || 0,
-
-    age_ratting: null,
 
     genres: getGenres(tvData.genres),
 
@@ -70,16 +71,16 @@ const tvBuilder = (tvData) => {
 
     last_episode_aired: tvData.last_episode_to_air
       ? {
-          ...tvData.last_episode_to_air,
-          still_path: `${TmdbConfig.tmdbImagesUrl}w300${tvData.last_episode_to_air.still_path}`,
-        }
+        ...tvData.last_episode_to_air,
+        still_path: `${TmdbConfig.tmdbImagesUrl}w300${tvData.last_episode_to_air.still_path}`,
+      }
       : null,
 
     next_episode_to_air: tvData.next_episode_to_air
       ? {
-          ...tvData.next_episode_to_air,
-          still_path: `${TmdbConfig.tmdbImagesUrl}w300${tvData.next_episode_to_air.still_path}`,
-        }
+        ...tvData.next_episode_to_air,
+        still_path: `${TmdbConfig.tmdbImagesUrl}w300${tvData.next_episode_to_air.still_path}`,
+      }
       : null,
 
     networks: getNetworks(tvData.networks),
