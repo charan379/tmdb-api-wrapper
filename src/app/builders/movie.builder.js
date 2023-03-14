@@ -38,7 +38,7 @@ const movieBuilder = (movieData) => {
 
     age_rattings: getAgeRattings({ title_type: "movie", certifications: movieData?.release_dates }),
 
-    ratting: movieData.vote_average || 0,
+    ratting: Math.round((movieData?.vote_average ?? 0) * 10) / 10 || 0,
 
     runtime: movieData.runtime,
 
