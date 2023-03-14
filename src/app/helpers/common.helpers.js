@@ -128,11 +128,15 @@ exports.getAgeRattings = ({ title_type, certifications }) => {
         break;
     }
 
-    return age_rattings;
+    if (age_rattings.length > 0) {
+      return age_rattings;
+    } else {
+      return [{ "country": "default", "ratting": "MB-26" }];
+    }
 
   } catch (error) {
 
-    return [];
+    return [{ "country": "default", "ratting": "MB-26" }];
 
   }
 }
