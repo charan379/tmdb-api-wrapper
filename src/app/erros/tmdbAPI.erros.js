@@ -27,6 +27,15 @@ exports.QueryRequired = (info) => {
   };
 };
 
+exports.WatchProvidersNotFound = (info) => {
+  return {
+    code: "TMDBAPI_WPNF",
+    message: "No watch providers available in your region.",
+    reason: "Query : " + info,
+    httpCode: HttpCodes.NOT_FOUND.code,
+  };
+};
+
 exports.InternalServerError = (info) => {
   return {
     code: "TMDBAPI_ISR",
