@@ -29,7 +29,7 @@ module.exports.getWatchProviders = async ({ tmdb_id, title_type, country }) => {
             if((providers?.length <= 0) || !providers || !tmdb_id ) throw new TMDBAPIException(WatchProvidersNotFound(`${tmdb_id} , ${title_type}, ${country}`));
 
             providers.map(provider => {
-                provider.logo_path = TmdbConfig.tmdbImagesUrl + "original" + provider?.logo_path;
+                provider.logo_path = TmdbConfig.tmdbImagesUrl + "w92" + provider?.logo_path;
             })
 
             flatRateLinks = { tmdb_link, providers };
