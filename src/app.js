@@ -13,6 +13,7 @@ const swaggerJSDoc = require("swagger-jsdoc");
 const swaggerUi = require("swagger-ui-express");
 const ErrorResponse = require("./app/utils/ErrorResponse");
 const TMDBAPIException = require("./app/utils/Exceptions");
+const { domainName } = require("./app/utils/TmdbConfig");
 
 const app = express();
 
@@ -42,7 +43,7 @@ const swaggerOptions = {
         name: "GNU Affero General Public License",
         url: "https://www.gnu.org/licenses/agpl-3.0.en.html",
       },
-      servers: ["http://localhost:3000"],
+      servers: ["http://localhost:3000", domainName],
     },
   },
   apis: [path.join(process.cwd(), "./src/app/routes/*.js")],
