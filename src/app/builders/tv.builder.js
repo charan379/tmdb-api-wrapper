@@ -43,7 +43,7 @@ const tvBuilder = (tvData) => {
 
     age_rattings: getAgeRattings({ title_type: "tv", certifications: tvData?.content_ratings }),
     
-    ratting: tvData.vote_average || 0,
+    ratting: Math.round((parseFloat(tvData?.vote_average) ?? 0) * 10) / 10 || 0,
 
     genres: getGenres(tvData.genres),
 

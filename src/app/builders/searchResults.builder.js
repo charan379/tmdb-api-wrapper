@@ -21,7 +21,7 @@ const searchResultsBuilder = (tmdbdata, type) => {
 
       year: getYear(movie, type),
 
-      ratting: movie.vote_average || 0,
+      ratting: Math.round((parseFloat(movie?.vote_average) ?? 0) * 10) / 10 || 0,
 
       title_type: type,
 

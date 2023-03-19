@@ -1,4 +1,5 @@
 const iso = require("../utils/iso369-1.json");
+const TmdbConfig = require("../utils/TmdbConfig");
 
 exports.getDirectors = (credits) => {
   try {
@@ -16,11 +17,12 @@ exports.getDirectors = (credits) => {
 exports.getCast = (credits) => {
   try {
     let cast = [];
-    credits.cast.map((person) =>
-      person.order < 10
-        ? cast.push({ name: person.name, character: person.character })
-        : null
-    );
+    const sortedCast = credits.cast.sort((person1, person2) => (person1.order > person2.order) ? 1 : (person1.order < person2.order) ? -1 : 0);
+
+    for (let i = 0; i < 12; i++) {
+      if (!sortedCast[i]) break;
+      cast.push({ name: sortedCast[i]?.name, character: sortedCast[i]?.character, profile_path: `${TmdbConfig.tmdbImagesUrl}w92${sortedCast[i]?.profile_path}` })
+    }
     return cast;
   } catch (err) {
     console.log(err);
@@ -128,11 +130,15 @@ exports.getAgeRattings = ({ title_type, certifications }) => {
         break;
     }
 
-    return age_rattings;
+    if (age_rattings.length > 0) {
+      return age_rattings;
+    } else {
+      return [{ "country": "default", "ratting": "MB-26" }];
+    }
 
   } catch (error) {
 
-    return [];
+    return [{ "country": "default", "ratting": "MB-26" }];
 
   }
 }

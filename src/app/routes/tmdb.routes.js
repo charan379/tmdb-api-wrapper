@@ -3,6 +3,7 @@ const { movieController } = require("../controllers/movie.controller");
 const { searchController } = require("../controllers/search.controller");
 const { seasonController } = require("../controllers/season.controller");
 const { tvController } = require("../controllers/tv.controller");
+const { watchProvidersController } = require("../controllers/watchproviders.controller");
 const TmdbConfig = require("../utils/TmdbConfig");
 const router = express.Router();
 
@@ -175,4 +176,42 @@ router.get("/tv/:tmdb_id", tvController);
 // tvSeasonDetails
 /* GET tmdb tv-season details */
 router.get("/tv/:tmdb_tv_id/season/:season_number", seasonController);
+
+/**
+ * @swagger
+ * /tmdb/providers/{title_type}/{tmdb_id}/{country}:
+ *  get:
+ *    tags:
+ *      - tmdb
+ *    summary: API to fetch watch providers from tmdb
+ *    description: Retirve watch providers from tmdb
+ *    parameters:
+ *    - in: path
+ *      name: title_type
+ *      schema:
+ *        type: String
+ *      description: tmdb title type
+ *      default : movie
+ *    - in: path
+ *      name: tmdb_id
+ *      schema:
+ *        type: String
+ *      description: tmdb id
+ *      default : 550
+ *    - in: path
+ *      name: country
+ *      schema:
+ *        type: String
+ *      description: country iso 369_1 code
+ *      default : IN
+ *    responses:
+ *      200:
+ *        description: Success
+ *      404:
+ *       description: No Data Avaialble
+ */
+// watch providers
+/* GET tmdb watch providers */
+router.get("/providers/:title_type/:tmdb_id/:country", watchProvidersController);
+
 module.exports = router;
