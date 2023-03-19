@@ -34,7 +34,7 @@ const swaggerOptions = {
       title: "tmdb-api-wrapper",
       description:
         "This is REST API application consumes tmdb api and adds a wrapper. Basically Developed as part of  MovieBunkers Application",
-      version: "1.0.4",
+      version: "1.0.5",
       contact: {
         name: "charan379",
         url: "#",
