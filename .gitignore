@@ -5,3 +5,6 @@
 # env 
 
 .env
+
+# Serverless generated files
+.serverless/
