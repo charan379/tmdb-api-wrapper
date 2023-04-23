@@ -10,7 +10,7 @@ const getWatchProviders = async ({ tmdb_id, title_type, country }) => {
         const { link: tmdb_link, flatrate: providers } = results?.[country] || {};
 
         if (!providers || providers.length === 0 || !tmdb_id) {
-            throw new TMDBAPIException(`No watch providers for ${tmdb_id} , ${title_type}, ${country}`);
+            throw new TMDBAPIException(`No watch providers for ${tmdb_id} , ${title_type}, ${country}`, 409);
         }
 
         for (const provider of providers) {
