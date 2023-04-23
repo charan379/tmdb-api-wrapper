@@ -60,7 +60,7 @@ const movieBuilder = (movieData) => {
 
     providers: getProviders(movieData["watch/providers"].results.IN),
 
-    directors: getDirectors(movieData.credits.crew),
+    directors: getDirectors(movieData.credits),
 
     cast: getCast(movieData.credits),
   };

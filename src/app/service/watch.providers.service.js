@@ -1,5 +1,4 @@
 const axios = require("axios");
-const { WatchProvidersNotFound } = require("../erros/tmdbAPI.erros");
 const TMDBAPIException = require("../utils/Exceptions");
 const TmdbConfig = require("../utils/TmdbConfig");
 
@@ -11,7 +10,7 @@ const getWatchProviders = async ({ tmdb_id, title_type, country }) => {
         const { link: tmdb_link, flatrate: providers } = results?.[country] || {};
 
         if (!providers || providers.length === 0 || !tmdb_id) {
-            throw new TMDBAPIException(WatchProvidersNotFound(`${tmdb_id} , ${title_type}, ${country}`));
+            throw new TMDBAPIException(`No watch providers for ${tmdb_id} , ${title_type}, ${country}`);
         }
 
         for (const provider of providers) {

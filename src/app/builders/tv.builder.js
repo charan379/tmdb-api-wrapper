@@ -59,7 +59,7 @@ const tvBuilder = (tvData) => {
 
     providers: getProviders(tvData["watch/providers"].results.IN),
 
-    directors: getDirectors(tvData.credits.crew),
+    directors: getDirectors(tvData.credits),
 
     cast: getCast(tvData.credits),
 
@@ -89,13 +89,13 @@ const tvBuilder = (tvData) => {
 
     number_of_episodes: tvData.number_of_episodes || 0,
 
-    seasons: tvData.seasons.map((season) => {
-      return {
-        ...season,
-        poster_path: `${TmdbConfig.tmdbImagesUrl}w300${season.poster_path}`,
-        tmdb_show_id: tvData.id,
-      };
-    }),
+    // seasons: tvData.seasons.map((season) => {
+    //   return {
+    //     ...season,
+    //     poster_path: `${TmdbConfig.tmdbImagesUrl}w300${season.poster_path}`,
+    //     tmdb_show_id: tvData.id,
+    //   };
+    // }),
   };
 
   return tv;

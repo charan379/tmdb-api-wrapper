@@ -1,11 +1,14 @@
 class TMDBAPIException extends Error {
-  constructor(errorObject) {
-    super(errorObject.message);
+
+  constructor(message, status, reason, stack) {
+    super(message);
     this.name = "TMDBAPIException";
-    this.code = errorObject.code;
-    this.reason = errorObject.reason;
-    this.httpCode = errorObject.httpCode;
+    this.status = status;
+    this.reason = reason;
+    this.stack = stack;
   }
+
+
 }
 
 module.exports = TMDBAPIException;

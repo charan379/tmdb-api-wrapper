@@ -1,4 +1,4 @@
-const { getTitle, getYear } = require("../helpers/search.helpers");
+const { getTitle, getYear } = require("../helpers/common.helpers");
 const TmdbConfig = require("../utils/TmdbConfig");
 
 // build movieslist and return data
