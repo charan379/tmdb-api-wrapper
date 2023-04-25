@@ -8,7 +8,7 @@ const seasonBuilder = (tvSeason) => {
     air_date: tvSeason.air_date,
     name: tvSeason.name,
     season_number: tvSeason.season_number,
-    episode_count: tvSeason?.episodes?.length - 1 ?? 0,
+    episode_count: tvSeason?.episodes?.length ?? 0,
     poster_path: `${TmdbConfig.tmdbImagesUrl}w342${tvSeason.poster_path}`,
     overview: tvSeason.overview,
     episodes: tvSeason.episodes.map((episode) => buildEpisode(episode)),
