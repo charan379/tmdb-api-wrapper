@@ -130,22 +130,32 @@ exports.getGenres = (genres) => {
 };
 
 exports.getCreators = (created_by) => {
-  if (!Array.isArray(created_by) || created_by.length === 0) {
-    throw new Error("Invalid input: created_by should be a non-empty array.");
-  }
+  try {
+    if (!Array.isArray(created_by) || created_by.length === 0) {
+      throw new Error("Invalid input: created_by should be a non-empty array.");
+    }
 
-  return created_by.map((creator) => creator?.name?.trim()).filter(Boolean);
+    return created_by.map((creator) => creator?.name?.trim()).filter(Boolean);
+  } catch (err) {
+    console.log(err);
+    return [];
+  }
 };
 
 
 exports.getNetworks = (networks) => {
-  if (!Array.isArray(networks) || networks.length === 0) {
-    throw new Error("Invalid input: networks should be a non-empty array.");
+  try {
+    if (!Array.isArray(networks) || networks.length === 0) {
+      throw new Error("Invalid input: networks should be a non-empty array.");
+    }
+
+    const networkNames = networks.map((network) => network?.name?.trim());
+
+    return networkNames.filter(Boolean);
+  } catch (err) {
+    console.log(err);
+    return [];
   }
-
-  const networkNames = networks.map((network) => network?.name?.trim());
-
-  return networkNames.filter(Boolean);
 };
 
 
