@@ -42,7 +42,7 @@ const tvBuilder = (tvData) => {
     runtime: getRuntime(tvData.episode_run_time),
 
     age_rattings: getAgeRattings({ title_type: "tv", certifications: tvData?.content_ratings }),
-    
+
     ratting: Math.round((parseFloat(tvData?.vote_average) ?? 0) * 10) / 10 || 0,
 
     genres: getGenres(tvData.genres),
@@ -89,13 +89,12 @@ const tvBuilder = (tvData) => {
 
     number_of_episodes: tvData.number_of_episodes || 0,
 
-    // seasons: tvData.seasons.map((season) => {
-    //   return {
-    //     ...season,
-    //     poster_path: `${TmdbConfig.tmdbImagesUrl}w300${season.poster_path}`,
-    //     tmdb_show_id: tvData.id,
-    //   };
-    // }),
+    seasons: tvData?.seasons?.map((season) => {
+      return {
+        ...season,
+        tmdb_show_id: tvData?.id,
+      };
+    }),
   };
 
   return tv;
