@@ -19,7 +19,7 @@ const tvBuilder = (tvData) => {
 
     source: "tmdb",
 
-    imdb_id: tvData.imdb_id,
+    imdb_id: tvData.imdb_id ?? tvData?.external_ids?.imdb_id,
 
     tmdb_id: tvData.id,
 
@@ -95,6 +95,8 @@ const tvBuilder = (tvData) => {
         tmdb_show_id: tvData?.id,
       };
     }),
+
+    external_ids: tvData?.external_ids,
   };
 
   return tv;

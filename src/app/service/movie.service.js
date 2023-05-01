@@ -4,7 +4,7 @@ const buildMovie = require("../builders/movie.builder");
 const TMDBAPIException = require("../utils/Exceptions");
 
 const getTmdbMovie = async (tmdb_id) => {
-  const url = `${TmdbConfig.tmdbApiUrl}movie/${tmdb_id}?api_key=${TmdbConfig.tmdbApiKey}&append_to_response=watch/providers,credits,release_dates`;
+  const url = `${TmdbConfig.tmdbApiUrl}movie/${tmdb_id}?api_key=${TmdbConfig.tmdbApiKey}&append_to_response=watch/providers,credits,release_dates,external_ids`;
 
   try {
     const response = await axios.get(url);

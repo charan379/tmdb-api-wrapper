@@ -16,7 +16,7 @@ const movieBuilder = (movieData) => {
 
     source: "tmdb",
 
-    imdb_id: movieData.imdb_id,
+    imdb_id: movieData?.imdb_id ?? movieData?.external_ids?.imdb_id,
 
     tmdb_id: movieData.id,
 
@@ -63,6 +63,8 @@ const movieBuilder = (movieData) => {
     directors: getDirectors(movieData.credits),
 
     cast: getCast(movieData.credits),
+
+    external_ids: movieData?.external_ids,
   };
 
   return movie;

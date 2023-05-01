@@ -4,7 +4,7 @@ const TMDBAPIException = require("../utils/Exceptions");
 const TmdbConfig = require("../utils/TmdbConfig");
 
 const getTmdbTv = async (tmdb_id) => {
-  const url = `${TmdbConfig.tmdbApiUrl}tv/${tmdb_id}?api_key=${TmdbConfig.tmdbApiKey}&append_to_response=watch/providers,credits,content_ratings`;
+  const url = `${TmdbConfig.tmdbApiUrl}tv/${tmdb_id}?api_key=${TmdbConfig.tmdbApiKey}&append_to_response=watch/providers,credits,content_ratings,external_ids`;
 
   try {
     const { data } = await axios.get(url);
