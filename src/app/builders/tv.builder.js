@@ -93,6 +93,7 @@ const tvBuilder = (tvData) => {
       return {
         ...season,
         tmdb_show_id: tvData?.id,
+        poster_path: `${TmdbConfig.tmdbImagesUrl}w300${season?.poster_path}`
       };
     }),
 
