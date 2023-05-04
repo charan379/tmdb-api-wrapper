@@ -39,7 +39,7 @@ exports.getDirectors = (credits) => {
     }
     return directors;
   } catch (err) {
-    console.log(err);
+    console.log(err?.message);
     return [];
   }
 };
@@ -54,11 +54,11 @@ exports.getCast = (credits) => {
     const cast = sortedCast.slice(0, 12).map((person) => ({
       name: person?.name,
       character: person?.character,
-      profile_path: `${TmdbConfig.tmdbImagesUrl}w92${person?.profile_path}`
+      profile_path: person?.profile_path ? `${TmdbConfig.tmdbImagesUrl}w92${person?.profile_path}` : "",
     }));
     return cast;
   } catch (err) {
-    console.log(err);
+    console.log(err?.message);
     return [];
   }
 };
@@ -73,7 +73,7 @@ exports.getLanguage = (iso_code) => {
       throw new Error("Language not found for the given ISO code");
     }
   } catch (err) {
-    console.log(err);
+    console.log(err?.message);
     return { english_name: "Unknown", ISO_639_1_code: iso_code };
   }
 };
@@ -86,7 +86,7 @@ exports.getProviders = (streaming_on) => {
     }
     return flatrateProviders.map((provider) => provider.provider_name);
   } catch (err) {
-    console.log(err);
+    console.log(err?.message);
     return [];
   }
 };
@@ -99,7 +99,7 @@ exports.getProductionCompanies = (production_companies) => {
     }
     return production_companies.map((company) => company.name);
   } catch (err) {
-    console.error(err);
+    console.log(err?.message);
     return [];
   }
 };
@@ -112,7 +112,7 @@ exports.getProductionCountries = (production_countries) => {
     }
     return production_countries.map((country) => country.name);
   } catch (err) {
-    console.log(err);
+    console.log(err?.message);
     return [];
   }
 };
@@ -124,7 +124,7 @@ exports.getGenres = (genres) => {
     }
     return genres.map((genre) => genre.name);
   } catch (err) {
-    console.log(err);
+    console.log(err?.message);
     return [];
   }
 };
@@ -137,7 +137,7 @@ exports.getCreators = (created_by) => {
 
     return created_by.map((creator) => creator?.name?.trim()).filter(Boolean);
   } catch (err) {
-    console.log(err);
+    console.log(err?.message);
     return [];
   }
 };
@@ -153,7 +153,7 @@ exports.getNetworks = (networks) => {
 
     return networkNames.filter(Boolean);
   } catch (err) {
-    console.log(err);
+    console.log(err?.message);
     return [];
   }
 };
@@ -168,11 +168,118 @@ exports.getRuntime = (runtimeArray) => {
       return currentValue >= accumulator ? currentValue : accumulator;
     });
   } catch (err) {
-    console.log(err);
+    console.log(err?.message);
     return 0;
   }
 };
 
+exports.getVideos = ({ videosObject }) => {
+  try {
+    const videos = [];
+
+    // Destructure the "results" property from "videosObject" and give it a default value of an empty array
+    const { results = [] } = videosObject;
+
+    // Check if "results" is an array and has at least one item
+    if (Array.isArray(results) && results?.length > 0) {
+      // Loop through each item in "results"
+      for (const video of results) {
+        // Destructure the properties from "video" and give them default values
+        const {
+          name = "",
+          site = "",
+          key = "",
+          size = "",
+          type = "",
+          official = false,
+          published_at = "",
+        } = video;
+
+        // Add a new object to the "videos" array with the destructured properties
+        videos.push({
+          name,
+          site,
+          key,
+          size,
+          type,
+          official,
+          published_at,
+        });
+      }
+    }
+
+    // Return the "videos" array
+    return videos;
+  } catch (err) {
+    // Log any errors to the console
+    console.log(err?.message);
+    // Return an empty array if an error occurs
+    return [];
+  }
+};
+
+
+exports.getImages = ({ imagesObject }) => {
+  try {
+    const images = [];
+
+    // Check if there are any backdrops and loop through them
+    if (imagesObject?.backdrops instanceof Array && imagesObject?.backdrops?.length > 0) {
+      imagesObject.backdrops.map((backdrop) => {
+        // Push each backdrop to the images array with relevant information
+        if (backdrop?.file_path) {
+          images.push({
+            aspect_ratio: backdrop?.aspect_ratio ?? 0,
+            height: backdrop?.height ?? 0,
+            width: backdrop?.width ?? 0,
+            file_path: `${TmdbConfig.tmdbImagesUrl}original${backdrop?.file_path}`,
+            type: 'backdrop',
+          })
+        }
+      })
+    };
+
+    // Check if there are any posters and loop through them
+    if (imagesObject?.posters instanceof Array && imagesObject?.posters?.length > 0) {
+      imagesObject.posters.map((poster) => {
+        // Push each poster to the images array with relevant information
+        if (poster?.file_path) {
+          images.push({
+            aspect_ratio: poster?.aspect_ratio ?? 0,
+            height: poster?.height ?? 0,
+            width: poster?.width ?? 0,
+            file_path: `${TmdbConfig.tmdbImagesUrl}original${poster?.file_path}`,
+            type: 'poster',
+          })
+        }
+      })
+    };
+
+    // Check if there are any stills and loop through them
+    if (imagesObject?.stills instanceof Array && imagesObject?.stills?.length > 0) {
+      imagesObject.stills.map((still) => {
+        // Push each still to the images array with relevant information
+        if (still?.file_path) {
+          images.push({
+            aspect_ratio: still?.aspect_ratio ?? 0,
+            height: still?.height ?? 0,
+            width: still?.width ?? 0,
+            file_path: `${TmdbConfig.tmdbImagesUrl}original${still?.file_path}`,
+            type: 'still',
+          })
+        }
+      })
+    };
+
+    // Return the images array
+    return images;
+
+  } catch (err) {
+    // Log any errors and return an empty array
+    console.log(err?.message);
+    return [];
+  }
+};
 
 exports.getAgeRattings = ({ title_type = "", certifications = { results: [] } }) => {
   try {
@@ -207,8 +314,8 @@ exports.getAgeRattings = ({ title_type = "", certifications = { results: [] } })
     } else {
       return [{ "country": "default", "ratting": "MB-26" }];
     }
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err?.message);
     return [{ "country": "default", "ratting": "MB-26" }];
   }
 };

@@ -8,6 +8,8 @@ const {
   getProductionCountries,
   getGenres,
   getAgeRattings,
+  getVideos,
+  getImages,
 } = require("../helpers/common.helpers");
 
 const movieBuilder = (movieData) => {
@@ -30,7 +32,7 @@ const movieBuilder = (movieData) => {
 
     tagline: movieData.tagline,
 
-    poster_path: `${TmdbConfig.tmdbImagesUrl}w500${movieData.poster_path}`,
+    poster_path: movieData?.poster_path ? `${TmdbConfig.tmdbImagesUrl}w500${movieData.poster_path}` : "",
 
     year: new Date(movieData.release_date).getFullYear() || null,
 
@@ -64,10 +66,14 @@ const movieBuilder = (movieData) => {
 
     cast: getCast(movieData.credits),
 
+    videos: getVideos({ videosObject: movieData?.videos }),
+
+    images: getImages({ imagesObject: movieData?.images }),
+
     external_ids: movieData?.external_ids,
   };
 
   return movie;
 };
 
-module.exports = movieBuilder;
+module.exports = { movieBuilder };

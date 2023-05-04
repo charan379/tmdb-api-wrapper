@@ -1,14 +1,17 @@
 const axios = require("axios");
-const buildTv = require("../builders/tv.builder");
+const { tvBuilder } = require("../builders/tv.builder");
 const TMDBAPIException = require("../utils/Exceptions");
 const TmdbConfig = require("../utils/TmdbConfig");
 
 const getTmdbTv = async (tmdb_id) => {
-  const url = `${TmdbConfig.tmdbApiUrl}tv/${tmdb_id}?api_key=${TmdbConfig.tmdbApiKey}&append_to_response=watch/providers,credits,content_ratings,external_ids`;
+  const url = `${TmdbConfig.tmdbApiUrl}` +
+    `tv/` + `${tmdb_id}` +
+    `?api_key=${TmdbConfig.tmdbApiKey}` +
+    `&append_to_response=watch/providers,credits,content_ratings,external_ids,images,videos`;
 
   try {
     const { data } = await axios.get(url);
-    return buildTv(data);
+    return tvBuilder(data);
   } catch (error) {
     if (axios.isCancel(error)) {
       // do nothing

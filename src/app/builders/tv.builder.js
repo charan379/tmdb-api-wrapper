@@ -11,6 +11,8 @@ const {
   getCreators,
   getRuntime,
   getAgeRattings,
+  getVideos,
+  getImages,
 } = require("../helpers/common.helpers");
 
 const tvBuilder = (tvData) => {
@@ -33,7 +35,7 @@ const tvBuilder = (tvData) => {
 
     tagline: tvData.tagline,
 
-    poster_path: `${TmdbConfig.tmdbImagesUrl}w500${tvData.poster_path}`,
+    poster_path: tvData?.poster_path ? `${TmdbConfig.tmdbImagesUrl}w500${tvData.poster_path}` : "",
 
     year: tvData.first_air_date
       ? new Date(tvData.first_air_date).getFullYear()
@@ -72,14 +74,18 @@ const tvBuilder = (tvData) => {
     last_episode_aired: tvData.last_episode_to_air
       ? {
         ...tvData.last_episode_to_air,
-        still_path: `${TmdbConfig.tmdbImagesUrl}w300${tvData.last_episode_to_air.still_path}`,
+        still_path: tvData.last_episode_to_air?.still_path
+          ? `${TmdbConfig.tmdbImagesUrl}w300${tvData.last_episode_to_air.still_path}`
+          : "",
       }
       : null,
 
     next_episode_to_air: tvData.next_episode_to_air
       ? {
         ...tvData.next_episode_to_air,
-        still_path: `${TmdbConfig.tmdbImagesUrl}w300${tvData.next_episode_to_air.still_path}`,
+        still_path: tvData.next_episode_to_air?.still_path
+          ? `${TmdbConfig.tmdbImagesUrl}w300${tvData.next_episode_to_air.still_path}`
+          : "",
       }
       : null,
 
@@ -93,9 +99,14 @@ const tvBuilder = (tvData) => {
       return {
         ...season,
         tmdb_show_id: tvData?.id,
-        poster_path: `${TmdbConfig.tmdbImagesUrl}w300${season?.poster_path}`
+        poster_path: season?.poster_path ? `${TmdbConfig.tmdbImagesUrl}w300${season?.poster_path}` : "",
       };
     }),
+
+    videos: getVideos({ videosObject: tvData?.videos }),
+
+    images: getImages({ imagesObject: tvData?.images }),
+
 
     external_ids: tvData?.external_ids,
   };
@@ -103,4 +114,4 @@ const tvBuilder = (tvData) => {
   return tv;
 };
 
-module.exports = tvBuilder;
+module.exports = { tvBuilder };

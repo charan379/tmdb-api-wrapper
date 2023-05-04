@@ -14,7 +14,7 @@ const getWatchProviders = async ({ tmdb_id, title_type, country }) => {
         }
 
         for (const provider of providers) {
-            provider.logo_path = `${TmdbConfig.tmdbImagesUrl}w92${provider.logo_path}`;
+            provider.logo_path = provider?.logo_path ? `${TmdbConfig.tmdbImagesUrl}w92${provider.logo_path}` : "";
         }
 
         return { tmdb_link, providers };

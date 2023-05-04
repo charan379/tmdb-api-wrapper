@@ -1,5 +1,5 @@
 const TmdbConfig = require("../utils/TmdbConfig");
-const buildList = require("../builders/searchResults.builder");
+const { searchResultsBuilder } = require("../builders/searchResults.builder");
 const axios = require("axios");
 const TMDBAPIException = require("../utils/Exceptions");
 
@@ -29,7 +29,7 @@ module.exports.searchTmdb = async (
       `${search.pageNo ? "&page=" + search.pageNo : ""}`.replace(/\n/g, "").replace(/ /g, "");
 
     const result = await axios.get(url);
-    return buildList(result.data, search.type || "movie");
+    return searchResultsBuilder(result.data, search.type || "movie");
   } catch (error) {
     if (error?.response?.data) {
       throw new TMDBAPIException(`${JSON.stringify(search).replace(/"/g, "'")},  ${error.response.data.status_message}`, 409, "", "")

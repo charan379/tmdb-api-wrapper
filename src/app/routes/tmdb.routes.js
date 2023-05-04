@@ -7,7 +7,7 @@ const { watchProvidersController } = require("../controllers/watchproviders.cont
 const TmdbConfig = require("../utils/TmdbConfig");
 const router = express.Router();
 
-router.get("/", function (req, res, next) {
+router.get("/status", function (req, res, next) {
   res.status(200).json({ title: "Tmdb-api-wrapper", message: "API wrapper is Up And Running" });
 });
 
@@ -25,7 +25,7 @@ router.get("/movie/:tmdb_id", movieController);
 
 router.get("/tv/:tmdb_id", tvController);
 
-router.get("/tv/:tmdb_tv_id/season/:season_number", seasonController);
+router.get("/tv/:tmdb_show_id/season/:season_number", seasonController);
 
 router.get("/providers/:title_type/:tmdb_id/:country", watchProvidersController);
 

@@ -8,14 +8,7 @@ const searchResultsBuilder = (tmdbdata, type) => {
     return {
       tmdb_id: movie.id,
 
-      link: `/view/tmdb/${type}/${movie.id}/${encodeURIComponent(
-        (getTitle(movie, type) + "-" + getYear(movie, type)).replace(
-          /[^a-zA-Z0-9]/g,
-          "-"
-        )
-      )}`,
-
-      poster_path: `${TmdbConfig.tmdbImagesUrl}w500${movie.poster_path}`,
+      poster_path: movie?.poster_path ? `${TmdbConfig.tmdbImagesUrl}w500${movie.poster_path}` : "",
 
       title: getTitle(movie, type),
 
@@ -38,4 +31,4 @@ const searchResultsBuilder = (tmdbdata, type) => {
   };
 };
 
-module.exports = searchResultsBuilder;
+module.exports = { searchResultsBuilder };
