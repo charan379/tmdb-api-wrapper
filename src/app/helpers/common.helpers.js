@@ -183,7 +183,7 @@ exports.getVideos = ({ videosObject }) => {
     // Check if "results" is an array and has at least one item
     if (Array.isArray(results) && results?.length > 0) {
       // Loop through each item in "results"
-      for (const video of results) {
+      for (const video of results.slice(0, 20)) {
         // Destructure the properties from "video" and give them default values
         const {
           name = "",
@@ -225,7 +225,7 @@ exports.getImages = ({ imagesObject }) => {
 
     // Check if there are any backdrops and loop through them
     if (imagesObject?.backdrops instanceof Array && imagesObject?.backdrops?.length > 0) {
-      imagesObject.backdrops.map((backdrop) => {
+      imagesObject.backdrops.slice(0, 10).map((backdrop) => {
         // Push each backdrop to the images array with relevant information
         if (backdrop?.file_path) {
           images.push({
@@ -241,7 +241,7 @@ exports.getImages = ({ imagesObject }) => {
 
     // Check if there are any posters and loop through them
     if (imagesObject?.posters instanceof Array && imagesObject?.posters?.length > 0) {
-      imagesObject.posters.map((poster) => {
+      imagesObject.posters.slice(0, 10).map((poster) => {
         // Push each poster to the images array with relevant information
         if (poster?.file_path) {
           images.push({
@@ -257,7 +257,7 @@ exports.getImages = ({ imagesObject }) => {
 
     // Check if there are any stills and loop through them
     if (imagesObject?.stills instanceof Array && imagesObject?.stills?.length > 0) {
-      imagesObject.stills.map((still) => {
+      imagesObject.stills.slice(0, 10).map((still) => {
         // Push each still to the images array with relevant information
         if (still?.file_path) {
           images.push({
