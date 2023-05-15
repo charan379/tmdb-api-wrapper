@@ -5,6 +5,7 @@ const { seasonController } = require("../controllers/season.controller");
 const { tvController } = require("../controllers/tv.controller");
 const { watchProvidersController } = require("../controllers/watchproviders.controller");
 const TmdbConfig = require("../utils/TmdbConfig");
+const { episodeController } = require("../controllers/episode.controller");
 const router = express.Router();
 
 router.get("/status", function (req, res, next) {
@@ -26,6 +27,8 @@ router.get("/movie/:tmdb_id", movieController);
 router.get("/tv/:tmdb_id", tvController);
 
 router.get("/tv/:tmdb_show_id/season/:season_number", seasonController);
+
+router.get("/tv/:tmdb_show_id/season/:season_number/episode/:episode_number", episodeController);
 
 router.get("/providers/:title_type/:tmdb_id/:country", watchProvidersController);
 
