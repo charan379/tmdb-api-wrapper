@@ -4,17 +4,15 @@
  * @returns error response
  */
 function ErrorResponse(error) {
-    return {
-      success: false,
-      error: {
-        name: error.name,
-        code: error.code,
-        httpCode: error.httpCode,
-        message: error.message,
-        reason: error.reason,
-      },
-    };
-  }
-  
-  module.exports = ErrorResponse;
-  
+  return {
+    success: false,
+    error: {
+      name: error?.name ?? 'Unknown Error',
+      status: error?.status ?? 500,
+      message: error?.message ?? "empty message",
+      reason: error?.reason ?? "empty reason",
+    },
+  };
+}
+
+module.exports = ErrorResponse;

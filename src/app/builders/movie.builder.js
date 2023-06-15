@@ -8,6 +8,8 @@ const {
   getProductionCountries,
   getGenres,
   getAgeRattings,
+  getVideos,
+  getImages,
 } = require("../helpers/common.helpers");
 
 const movieBuilder = (movieData) => {
@@ -16,7 +18,7 @@ const movieBuilder = (movieData) => {
 
     source: "tmdb",
 
-    imdb_id: movieData.imdb_id,
+    imdb_id: movieData?.imdb_id ?? movieData?.external_ids?.imdb_id,
 
     tmdb_id: movieData.id,
 
@@ -30,7 +32,7 @@ const movieBuilder = (movieData) => {
 
     tagline: movieData.tagline,
 
-    poster_path: `${TmdbConfig.tmdbImagesUrl}w500${movieData.poster_path}`,
+    poster_path: movieData?.poster_path ? `${TmdbConfig.tmdbImagesUrl}w500${movieData.poster_path}` : "",
 
     year: new Date(movieData.release_date).getFullYear() || null,
 
@@ -60,12 +62,18 @@ const movieBuilder = (movieData) => {
 
     providers: getProviders(movieData["watch/providers"].results.IN),
 
-    directors: getDirectors(movieData.credits.crew),
+    directors: getDirectors(movieData.credits),
 
     cast: getCast(movieData.credits),
+
+    videos: getVideos({ videosObject: movieData?.videos }),
+
+    images: getImages({ imagesObject: movieData?.images }),
+
+    external_ids: movieData?.external_ids,
   };
 
   return movie;
 };
 
-module.exports = movieBuilder;
+module.exports = { movieBuilder };

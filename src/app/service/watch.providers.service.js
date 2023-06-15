@@ -1,45 +1,27 @@
-const { default: axios } = require("axios");
-const { WatchProvidersNotFound } = require("../erros/tmdbAPI.erros");
+const axios = require("axios");
 const TMDBAPIException = require("../utils/Exceptions");
 const TmdbConfig = require("../utils/TmdbConfig");
 
+const getWatchProviders = async ({ tmdb_id, title_type, country }) => {
+    const url = `${TmdbConfig.tmdbApiUrl}${title_type}/${tmdb_id}/watch/providers?api_key=${TmdbConfig.tmdbApiKey}`;
 
+    try {
+        const { data: { results } } = await axios.get(url);
+        const { link: tmdb_link, flatrate: providers } = results?.[country] || {};
 
-module.exports.getWatchProviders = async ({ tmdb_id, title_type, country }) => {
+        if (!providers || providers.length === 0 || !tmdb_id) {
+            throw new TMDBAPIException(`No watch providers for ${tmdb_id} , ${title_type}, ${country}`, 409);
+        }
 
-    const url = `${TmdbConfig.tmdbApiUrl}
-                  ${title_type}/
-                  ${tmdb_id}/
-                  watch/providers
-                  ?api_key=${TmdbConfig.tmdbApiKey}`
-        .replace(/\n/g, "")
-        .replace(/ /g, "");
+        for (const provider of providers) {
+            provider.logo_path = provider?.logo_path ? `${TmdbConfig.tmdbImagesUrl}w92${provider.logo_path}` : "";
+        }
 
-    let flatRateLinks = {};
+        return { tmdb_link, providers };
+    } catch (error) {
 
-    await axios.get(url)
-        .then((response) => {
-            const results = response?.data?.results;
-
-            const tmdb_link = results?.[country]?.link;
-
-            let providers = [];
-            providers = results?.[country]?.flatrate;
-
-            if((providers?.length <= 0) || !providers || !tmdb_id ) throw new TMDBAPIException(WatchProvidersNotFound(`${tmdb_id} , ${title_type}, ${country}`));
-
-            providers.map(provider => {
-                provider.logo_path = TmdbConfig.tmdbImagesUrl + "w92" + provider?.logo_path;
-            })
-
-            flatRateLinks = { tmdb_link, providers };
-
-        })
-        .catch(error => {
-            throw error;
-        })
-
-    return flatRateLinks;
+        throw error;
+    }
 };
 
-
+module.exports = { getWatchProviders };
