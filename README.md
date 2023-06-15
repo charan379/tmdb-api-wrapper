@@ -1,6 +1,6 @@
 # tmdb-api-wrapper :clapper:
 
-[![VERSION](https://img.shields.io/badge/VERSION-v1.0.5-sucess)](https://github.com/charan379/tmdb-api-wrapper)    [![LAST UPDATD](https://img.shields.io/badge/LAST--UPDATED-15--May--2023-sucess)](https://github.com/charan379/tmdb-api-wrapper) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
+[![VERSION](https://img.shields.io/badge/VERSION-v1.0.6-sucess)](https://github.com/charan379/tmdb-api-wrapper)    [![LAST UPDATD](https://img.shields.io/badge/LAST--UPDATED-15--June--2023-sucess)](https://github.com/charan379/tmdb-api-wrapper) [![AGPL License](https://img.shields.io/badge/LICENSE-GNU%20AGPLv3-informational)](https://www.gnu.org/licenses/agpl-3.0.en.html)
 
 This is REST API application consumes tmdb api and adds a wrapper. Basically Developed as part of MovieBunkers Application
 
@@ -14,7 +14,6 @@ To run this project, you will need to add the following environment variables to
 `APP_TMDB_API_IMAGES_URL`  
 `APP_TMDB_API_LANGUAGE`  
 `APP_TMDB_API_REGION`  
-`PORT`  
 
 
 ####  Example 
@@ -23,7 +22,6 @@ To run this project, you will need to add the following environment variables to
 `APP_TMDB_API_IMAGES_URL`=https://image.tmdb.org/t/p/  
 `APP_TMDB_API_LANGUAGE`=en-US  
 `APP_TMDB_API_REGION`=IN  
-`PORT`=3000 
 
 ## Run
 
@@ -51,7 +49,7 @@ Start the server
   npm run start
 ```
 
-Server will start running on given port
+Server will start running
 
 ## Supported API END Points
 #### Following is the list of supports API End points by [tmdb-api-wrapper](https://github.com/charan379/tmdb-api-wrapper)
