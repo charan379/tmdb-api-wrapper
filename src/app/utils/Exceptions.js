@@ -1,3 +1,5 @@
+
+// Custom Error object to store error response from TMDB API
 class TMDBAPIException extends Error {
 
   constructor(message, status, reason, stack) {
@@ -11,4 +13,5 @@ class TMDBAPIException extends Error {
 
 }
 
+// exports TMDBAPIException
 module.exports = TMDBAPIException;

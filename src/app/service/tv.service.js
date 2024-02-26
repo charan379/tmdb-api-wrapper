@@ -3,6 +3,7 @@ const { tvBuilder } = require("../builders/tv.builder");
 const TMDBAPIException = require("../utils/Exceptions");
 const TmdbConfig = require("../utils/TmdbConfig");
 
+// Service function to get tv show data based on tmdb_id
 const getTmdbTv = async (tmdb_id) => {
   const url = `${TmdbConfig.tmdbApiUrl}` +
     `tv/` + `${tmdb_id}` +
@@ -25,4 +26,5 @@ const getTmdbTv = async (tmdb_id) => {
   }
 };
 
+// export service funtion
 module.exports = { getTmdbTv };

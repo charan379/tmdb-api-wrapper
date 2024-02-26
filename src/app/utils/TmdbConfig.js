@@ -1,3 +1,6 @@
+
+// Configuration to connect with TMDB API, 
+// Extract config data form environment variables
 const TmdbConfig = {
   tmdbApiKey: process.env.APP_TMDB_API,
   tmdbApiUrl: process.env.APP_TMDB_API_URL,

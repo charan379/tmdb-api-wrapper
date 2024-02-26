@@ -35,19 +35,20 @@ app.use(function (err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get("env") === "development" ? err : {};
 
+  // If error is an instance of TMDBAPI Exception
+  // respond with error details
   if (err instanceof TMDBAPIException) {
     res.status(err.status).json(ErrorResponse(err));
-    return 0;
+    return 0;e
   }
 
   if (err.status === 404) {
     res.status(404).json(ErrorResponse(err));
   } else {
     res.status(err.status || 500);
-    // res.render("error");
     res.json(ErrorResponse(err))
   }
 });
 
-// module.exports = app;
+// serverless application
 module.exports.handler = serverless(app);
