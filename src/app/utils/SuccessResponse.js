@@ -13,4 +13,5 @@ function SuccessResponse(result) {
   };
 }
 
+// exports SuccessResponse
 module.exports = SuccessResponse;

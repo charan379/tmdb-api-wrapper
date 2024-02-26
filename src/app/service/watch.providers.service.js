@@ -1,7 +1,12 @@
+// Import axios
 const axios = require("axios");
+// Import TMDBAPIException
 const TMDBAPIException = require("../utils/Exceptions");
+// Import TmdbConfig
 const TmdbConfig = require("../utils/TmdbConfig");
 
+// Service function to fetch streaming providers of a title
+// from tmdb api based on tmdb_id, title_type, country
 const getWatchProviders = async ({ tmdb_id, title_type, country }) => {
     const url = `${TmdbConfig.tmdbApiUrl}${title_type}/${tmdb_id}/watch/providers?api_key=${TmdbConfig.tmdbApiKey}`;
 
@@ -24,4 +29,5 @@ const getWatchProviders = async ({ tmdb_id, title_type, country }) => {
     }
 };
 
+// Export service function
 module.exports = { getWatchProviders };

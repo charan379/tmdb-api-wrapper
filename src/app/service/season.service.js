@@ -3,6 +3,8 @@ const { seasonBuilder } = require("../builders/season.builder");
 const TMDBAPIException = require("../utils/Exceptions");
 const TmdbConfig = require("../utils/TmdbConfig");
 
+// Service to fetch season data of a tv show based on
+// tmdb_show_id and season_number
 const getTmdbTvSeason = async ({ tmdb_show_id, season_number }) => {
   const url = `${TmdbConfig.tmdbApiUrl}` +
     `tv/${tmdb_show_id}` +
@@ -21,4 +23,5 @@ const getTmdbTvSeason = async ({ tmdb_show_id, season_number }) => {
   }
 };
 
+// export service function
 module.exports = { getTmdbTvSeason };
